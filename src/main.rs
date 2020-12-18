@@ -37,12 +37,16 @@ mod watch;
 
 use anyhow::{Context, Result};
 
+trait FileSystem: vfs::FileSystem + std::fmt::Debug {}
+impl FileSystem for vfs::PhysicalFS {}
+
 lazy_static! {
-    pub(crate) static ref FILESYSTEM: antidote::Mutex<Box<dyn vfs::FileSystem>> =
-        antidote::Mutex::new(Box::new(vfs::PhysicalFS::new(".".into())));
+    pub(crate) static ref FILESYSTEM: antidote::Mutex<Box<dyn FileSystem>> =
+        antidote::Mutex::new(Box::new(vfs::PhysicalFS::new("/".into())));
 }
 
 fn main() {
+    dbg!(FILESYSTEM.lock().read_dir(".").unwrap().collect::<Vec<_>>());
     match run() {
         Ok(success) if success => std::process::exit(0),
         Ok(_) => std::process::exit(1),

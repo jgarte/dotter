@@ -1,6 +1,7 @@
 #[cfg(windows)]
 extern crate dunce;
 
+extern crate antidote;
 #[macro_use]
 extern crate anyhow;
 extern crate clap;
@@ -8,6 +9,8 @@ extern crate crossterm;
 extern crate diff;
 extern crate handlebars;
 extern crate handlebars_misc_helpers;
+#[macro_use]
+extern crate lazy_static;
 #[macro_use]
 extern crate log;
 extern crate meval;
@@ -19,6 +22,7 @@ extern crate structopt;
 #[macro_use]
 extern crate thiserror;
 extern crate toml;
+extern crate vfs;
 extern crate watchexec;
 
 mod args;
@@ -32,6 +36,11 @@ mod init;
 mod watch;
 
 use anyhow::{Context, Result};
+
+lazy_static! {
+    pub(crate) static ref FILESYSTEM: antidote::Mutex<Box<dyn vfs::FileSystem>> =
+        antidote::Mutex::new(Box::new(vfs::PhysicalFS::new(".".into())));
+}
 
 fn main() {
     match run() {

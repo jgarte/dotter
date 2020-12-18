@@ -35,6 +35,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "antidote"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "34fde25430d87a9388dadbe6e34d7f72a462c8b43ac8d309b42b0a8505d7e2a5"
+
+[[package]]
 name = "anyhow"
 version = "1.0.35"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -374,6 +380,7 @@ dependencies = [
 name = "dotter"
 version = "0.10.9"
 dependencies = [
+ "antidote",
  "anyhow",
  "clap",
  "crossterm",
@@ -381,6 +388,7 @@ dependencies = [
  "dunce",
  "handlebars",
  "handlebars_misc_helpers",
+ "lazy_static",
  "log",
  "meval",
  "serde",
@@ -389,6 +397,7 @@ dependencies = [
  "structopt",
  "thiserror",
  "toml 0.4.10",
+ "vfs",
  "watchexec",
 ]
 
@@ -1682,6 +1691,15 @@ name = "version_check"
 version = "0.9.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b5a972e5669d67ba988ce3dc826706fb0a8b01471c088cb0b6110b805cc36aed"
+
+[[package]]
+name = "vfs"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7cc382cffc2f8d6f9490b96d42a7408d6aa719c2db86491b8b31780208ac9d86"
+dependencies = [
+ "thiserror",
+]
 
 [[package]]
 name = "void"

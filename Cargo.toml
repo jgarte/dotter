@@ -10,12 +10,14 @@ categories = ["command-line-utilities"]
 license = "Unlicense"
 
 [dependencies]
+antidote = "1.*"
 anyhow = "1.*"
 clap = "2.*"
 crossterm = "0.18.*"
 diff = "0.1.*"
 handlebars = { version = "3.*", features = ["script_helper"] }
 handlebars_misc_helpers = "0.11.*"
+lazy_static = "1.*"
 log = "0.4.*"
 meval = "0.2.*"
 serde = "1.*"
@@ -24,6 +26,7 @@ simplelog = "0.8.*"
 structopt = "0.3.*"
 thiserror = "1.*"
 toml = "0.4.*"
+vfs = "0.4.*"
 watchexec = "=1.14.1"
 
 [target.'cfg(windows)'.dependencies]
